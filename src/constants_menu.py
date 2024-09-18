@@ -18,7 +18,7 @@ def buttonClicked(window, btn):
     global is_opened
     if not is_opened:
         # Make the window wider
-        window.geometry("600x400")
+        window.geometry("500x400")
         btn["text"] = 'v'
         
         # List of names for the entry boxes
