@@ -20,6 +20,7 @@ def buttonClicked():
     if not is_opened:
         # Make the window wider
         root.geometry("600x400")
+        btn["text"] = 'v'
         
         # List of names for the entry boxes
         names = ["t1", "t2", "t3", "k", "m", "g", "SL"]
@@ -55,6 +56,7 @@ def buttonClicked():
     else:
         # Make the window narrower
         root.geometry("400x400")
+        btn["text"] = '>'
         
         for label in labels:
             label.place_forget()
