@@ -17,15 +17,15 @@ def create_tabs(root, style):
     tabControl = ttk.Notebook(root)
 
     tab1 = ttk.Frame(tabControl)
-    tabControl.add(tab1, text='Tab 1')
+    tabControl.add(tab1, text='By time and distance')
 
     tab2 = ttk.Frame(tabControl)
-    tabControl.add(tab2, text='Tab 2')
+    tabControl.add(tab2, text='By brake marks')
 
     tabControl.pack(expand=1, fill="both")
 
-    labelTab1 = ttk.Label(tab1, text="This is the content of Tab 1")
+    labelTab1 = ttk.Label(tab1, text="Inputs for velocity by time and distance.")
     labelTab1.pack(padx=10, pady=10)
 
-    labelTab2 = ttk.Label(tab2, text="This is the content of Tab 2")
+    labelTab2 = ttk.Label(tab2, text="Inputs for velocity by brake marks.")
     labelTab2.pack(padx=10, pady=10)
