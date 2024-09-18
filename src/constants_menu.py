@@ -1,7 +1,6 @@
 from tkinter import *
 from tkinter.ttk import *
 
-root = Tk()
 
 is_opened = False  # Global flag for window state
 entries = []       # List to store entry widgets
@@ -15,11 +14,11 @@ def save_value(event, idx):
     print(f"Value saved for {labels[idx].cget('text')}: {value}")  # Print the saved value for feedback
 
 
-def buttonClicked():
+def buttonClicked(window, btn):
     global is_opened
     if not is_opened:
         # Make the window wider
-        root.geometry("600x400")
+        window.geometry("600x400")
         btn["text"] = 'v'
         
         # List of names for the entry boxes
@@ -29,11 +28,11 @@ def buttonClicked():
             is_default = True
             # Create the entry boxes with labels, placed below each other
             for idx, name in enumerate(names):
-                label = Label(root, text = name)
+                label = Label(window, text = name)
                 label.place(x = 420, y = 50 + idx * 40)  # Place labels starting from x=420 and spacing them vertically
                 labels.append(label)
                 
-                txt = Entry(root, width=5)
+                txt = Entry(window, width=5)
                 txt.place(x = 440, y = 50 + idx * 40)  # Entry boxes aligned to the right of the labels
                 entries.append(txt)
                 
@@ -55,7 +54,7 @@ def buttonClicked():
             is_opened = True
     else:
         # Make the window narrower
-        root.geometry("400x400")
+        window.geometry("400x400")
         btn["text"] = '>'
         
         for label in labels:
@@ -64,13 +63,3 @@ def buttonClicked():
             txt.place_forget()
         
         is_opened = False
-
-root.geometry("400x400")
-
-clicked = StringVar()
-
-btn = Button(root, text='>', command=buttonClicked, width=3)
-
-btn.place(x=350, y=50) 
-
-root.mainloop()
