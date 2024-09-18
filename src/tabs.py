@@ -15,6 +15,7 @@ def create_tabs(root, style):
     )
 
     tabControl = ttk.Notebook(root)
+    tabControl.pack(side='left')
 
     tab1 = ttk.Frame(tabControl)
     tabControl.add(tab1, text='By time and distance')
