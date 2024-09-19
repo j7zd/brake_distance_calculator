@@ -19,7 +19,7 @@ def buttonClicked(window, btn):
     if not is_opened:
         # Make the window wider
         window.geometry("500x400")
-        btn["text"] = 'v'
+        btn["text"] = '<'
         
         # List of names for the entry boxes
         names = ["t1", "t2", "t3", "k", "m", "g", "SL"]
