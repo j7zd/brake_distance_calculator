@@ -35,7 +35,7 @@ def buttonClicked(window, btn):
             frame = tk.Frame(window)  # Create a frame for each row to combine widgets
             frame.grid(row=idx, column=2, sticky="w", padx=5, pady=2)
             
-            desc_label = tk.Label(frame, text=description, width=15, anchor="w")
+            desc_label = tk.Label(frame, text=description, width=20, anchor="w")
             desc_label.grid(row=0, column=0, columnspan=5, sticky="w", padx = 2)
             labels.append(desc_label)
             

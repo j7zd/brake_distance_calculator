@@ -35,7 +35,7 @@ def update_speed_limit():
     try:
         speed_limit = kmh_to_ms(float(speed_limit_entry.get()))
         collision_distance = float(collision_distance_entry.get())
-        n_speed = Vmax(collision_distance, 1.2, 0.2, 0.4, 1.1, 0.9) # TODO
+        n_speed = kmh_to_ms(Vmax(collision_distance, 1.2, 0.2, 0.4, 1.1, 0.9)) # TODO
         if n_speed is not None:
             if n_speed > speed_limit:
                 new_speed_limit_var.set(str(ms_to_kmh(speed_limit)) + " km/h")
