@@ -8,7 +8,6 @@ if __name__ == "__main__":
     window = tk.Tk()
 
     window.title("Break distance calculator")
-    #window.geometry("400x400")
 
     tabs_frame = tk.Frame()
     tabs_frame.grid(row=0, column=0, sticky="nsew")
