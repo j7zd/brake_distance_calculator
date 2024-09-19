@@ -37,6 +37,7 @@ def buttonClicked(window, btn):
             
             desc_label = tk.Label(frame, text=description, width=30, anchor="w")
             desc_label.grid(row=0, column=0, columnspan=5, padx=2)
+    
             labels.append(desc_label)
             
             var_label = tk.Label(frame, text=var_name)
