@@ -12,7 +12,7 @@ entry_values = default_entry_values.copy()
 def save_value(event, idx):
     value = entries[idx].get()  
     entry_values[idx] = value   
-    print(f"Value saved for {labels[idx * 3].cget('text')}: {value}") 
+    print(f"Value saved for {labels[idx * 3].cget('text')} {value}") 
 
 def buttonClicked(window, btn):
     global is_opened
@@ -46,7 +46,7 @@ def buttonClicked(window, btn):
             
             entry = tk.Entry(frame, width=3)
             entry.grid(row=1, column=1, sticky="ew")    
-            entry.insert(0, default_entry_values[idx])  
+            entry.insert(0, entry_values[idx])  
             entries.append(entry)
             
             unit_label = tk.Label(frame, text=unit, width=5)
@@ -58,7 +58,7 @@ def buttonClicked(window, btn):
         
         is_opened = True 
     else:
-        window.geometry("450x500")
+        window.geometry("500x500")
         btn["text"] = '>'
         
         for widget in window.grid_slaves():
