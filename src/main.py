@@ -1,19 +1,22 @@
 import tkinter as tk
 from tkinter import ttk
 from tabs import create_tabs
+from constants_menu import *
+
 
 if __name__ == "__main__":
-    root = tk.Tk()
-    root.title("Break Distance Calculator")
+    window = tk.Tk()
 
-    row = ttk.Frame(root)
-    row.pack(fill='both', expand=True)
+    window.title("Break distance calculator")
+    #window.geometry("400x400")
 
-
+    tabs_frame = tk.Frame()
+    tabs_frame.grid(row=0, column=0, sticky="nsew")
     style = ttk.Style()
-    create_tabs(row, style)
+    create_tabs(tabs_frame, style)
+    clicked = tk.StringVar()
+    btn = tk.Button(window, text='>', command=lambda: buttonClicked(window, btn), width=3)
+    btn.grid(row=0, column=1, sticky="nsew") 
 
-    button = ttk.Button(row, text=">")
-    button.pack(side='right', padx=10, pady=10)
 
-    root.mainloop()
+    window.mainloop()
