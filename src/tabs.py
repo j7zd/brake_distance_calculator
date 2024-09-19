@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 
-def create_tabs(root, style):
+def create_tabs(root, style, on_change):
     style.configure('TNotebook.Tab', font=('Helvetica', '14'))
 
     style.configure('TNotebook.Tab', padding=[20, 8, 20, 8])
@@ -25,16 +25,38 @@ def create_tabs(root, style):
 
     tabControl.pack(expand=1, fill="both")
 
-    Tab1EntryFrame = ttk.Frame(tab1);
+    Tab1EntryFrame = ttk.Frame(tab1, padding=(10, 10, 10, 10))
     Tab1EntryFrame.grid(rows=1, columns=4)
     labelEntrySTab1 = ttk.Label(Tab1EntryFrame, text="Distance").grid(row=0, column=0)
-    entrySTab1 = ttk.Entry(Tab1EntryFrame).grid(row=0, column=1)
+    entrySTab1 = ttk.Entry(Tab1EntryFrame)
+    entrySTab1.grid(row=0, column=1)
+    entrySTab1.bind('<Return>', lambda event: on_change())
     labelEntryTTab1 = ttk.Label(Tab1EntryFrame, text="Time").grid(row=0, column=2)
-    entryTTab1 = ttk.Entry(Tab1EntryFrame).grid(row=0, column=3)
+    entryTTab1 = ttk.Entry(Tab1EntryFrame)
+    entryTTab1.grid(row=0, column=3)
+    entryTTab1.bind('<Return>', lambda event: on_change())
 
-    Tab2EntryFrame = ttk.Frame(tab2);
+    Tab2EntryFrame = ttk.Frame(tab2, padding=(10, 10, 10, 10))
     Tab2EntryFrame.grid(rows=1, columns=4)
-    labelEntrySTab2 = ttk.Label(Tab2EntryFrame, text="Length 1").grid(row=0, column=0)
-    entrySTab2 = ttk.Entry(Tab2EntryFrame).grid(row=0, column=1)
-    labelEntryTTab2 = ttk.Label(Tab2EntryFrame, text="Length 2").grid(row=0, column=2)
-    entryTTab2 = ttk.Entry(Tab2EntryFrame).grid(row=0, column=3)
+    labelEntrySTab2 = ttk.Label(Tab2EntryFrame, text="Left length").grid(row=0, column=0)
+    entrySTab2 = ttk.Entry(Tab2EntryFrame)
+    entrySTab2.grid(row=0, column=1)
+    entrySTab2.bind('<Return>', lambda event: on_change())
+    labelEntryTTab2 = ttk.Label(Tab2EntryFrame, text="Right length").grid(row=0, column=2)
+    entryTTab2 = ttk.Entry(Tab2EntryFrame)
+    entryTTab2.grid(row=0, column=3)
+    entryTTab2.bind('<Return>', lambda event: on_change())
+
+    def get_selected_values():
+        try:
+            selected_tab = tabControl.index(tabControl.select())
+            if selected_tab == 0:
+                return entrySTab1.get(), entryTTab1.get(), 0
+            elif selected_tab == 1:
+                return entrySTab2.get(), entryTTab2.get(), 1
+            else:
+                return None, None, None
+        except:
+            return None, None, None
+
+    return get_selected_values
