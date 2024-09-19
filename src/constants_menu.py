@@ -35,20 +35,20 @@ def buttonClicked(window, btn):
             frame = tk.Frame(window)  # Create a frame for each row to combine widgets
             frame.grid(row=idx, column=2, sticky="w", padx=5, pady=2)
             
-            desc_label = tk.Label(frame, text=description, width=15, anchor="w")
-            desc_label.grid(row=0, column=0, columnspan=5, sticky="w", padx = 2)
+            desc_label = tk.Label(frame, text=description, width=30, anchor="w")
+            desc_label.grid(row=0, column=0, columnspan=5, padx=2)
             labels.append(desc_label)
             
             var_label = tk.Label(frame, text=var_name)
-            var_label.grid(row=1, column=0, sticky="w")
+            var_label.grid(row=1, column=0, columnspan=1, sticky="ew")
             labels.append(var_label)
             
-            entry = tk.Entry(frame, width=5)
-            entry.grid(row=1, column=1, sticky="w")    
+            entry = tk.Entry(frame, width=3)
+            entry.grid(row=1, column=1, sticky="ew")    
             entry.insert(0, default_entry_values[idx])  
             entries.append(entry)
             
-            unit_label = tk.Label(frame, text=unit)
+            unit_label = tk.Label(frame, text=unit, width=5)
             unit_label.grid(row=1, column=2, sticky="w")
             labels.append(unit_label)
             
