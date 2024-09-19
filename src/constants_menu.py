@@ -47,14 +47,14 @@ def buttonClicked(window, btn):
             
         # Show the widgets if hidden
         for label in labels:
-            label.place(x=420, y=50 + labels.index(label) * 40)
+            label.place(x=450, y=50 + labels.index(label) * 40)
         for txt in entries:
-            txt.place(x=440, y=50 + entries.index(txt) * 40)
+            txt.place(x=450, y=50 + entries.index(txt) * 40)
             
             is_opened = True
     else:
         # Make the window narrower
-        window.geometry("400x400")
+        window.geometry("450x400")
         btn["text"] = '>'
         
         for label in labels:
