@@ -1,65 +1,67 @@
-from tkinter import *
+import tkinter as tk
 from tkinter.ttk import *
 
 
-is_opened = False  # Global flag for window state
-entries = []       # List to store entry widgets
-labels = []        # List to store label widgets
-entry_values = []  # List to store the values entered in the entry boxes
+is_opened = False  
+entries = []      
+labels = []        
+entry_values = []  
 default_entry_values = [ "1.2", "0.2", "0.4", "1", "0.9", "9.81", "50"]
+entry_values = default_entry_values.copy()
 
 def save_value(event, idx):
-    value = entries[idx].get()  # Get the value from the corresponding entry
-    entry_values[idx] = value   # Save the value to the corresponding index in the list
-    print(f"Value saved for {labels[idx].cget('text')}: {value}")  # Print the saved value for feedback
-
+    value = entries[idx].get()  
+    entry_values[idx] = value   
+    print(f"Value saved for {labels[idx * 3].cget('text')}: {value}") 
 
 def buttonClicked(window, btn):
     global is_opened
+    
     if not is_opened:
-        # Make the window wider
-        window.geometry("500x400")
+        window.geometry("700x500")
         btn["text"] = '<'
         
-        # List of names for the entry boxes
-        names = ["t1", "t2", "t3", "k", "m", "g", "SL"]
-        
-        if not labels and not entries:
-            is_default = True
-            # Create the entry boxes with labels, placed below each other
-            for idx, name in enumerate(names):
-                label = Label(window, text = name)
-                label.place(x = 420, y = 50 + idx * 40)  # Place labels starting from x=420 and spacing them vertically
-                labels.append(label)
-                
-                txt = Entry(window, width=5)
-                txt.place(x = 440, y = 50 + idx * 40)  # Entry boxes aligned to the right of the labels
-                entries.append(txt)
-                
-                # Set the default value in the entry box
-                txt.insert(0, default_entry_values[idx])
+        variables = [
+            ["t1", "Driver's reaction time:", "s"],
+            ["t2", "Brake activation delay:", "s"],
+            ["t3", "Brake delay rise time:", "s"],
+            ["k", "Correction factor:", ""],
+            ["m", "Coefficient of traction on a dry road:", ""],
+            ["g", "Acceleration of gravity:", "m/s²"],
+            ["SL", "Speed limit:", "km/h"]
+        ]
 
-                # Append the default value to the entry_values list
-                entry_values.append(default_entry_values[idx])
-                
-                # Bind the "Enter" key to the save_value function for this entry box
-                txt.bind('<Return>', lambda event, i=idx: save_value(event, i))
+        for idx, (var_name, description, unit) in enumerate(variables):
+            frame = tk.Frame(window)  # Create a frame for each row to combine widgets
+            frame.grid(row=idx, column=2, sticky="w", padx=5, pady=2)
             
-        # Show the widgets if hidden
-        for label in labels:
-            label.place(x=450, y=50 + labels.index(label) * 40)
-        for txt in entries:
-            txt.place(x=470, y=50 + entries.index(txt) * 40)
+            desc_label = tk.Label(frame, text=description, width=15, anchor="w")
+            desc_label.grid(row=0, column=0, columnspan=5, sticky="w", padx = 2)
+            labels.append(desc_label)
             
-            is_opened = True
+            var_label = tk.Label(frame, text=var_name)
+            var_label.grid(row=1, column=0, sticky="w")
+            labels.append(var_label)
+            
+            entry = tk.Entry(frame, width=5)
+            entry.grid(row=1, column=1, sticky="w")    
+            entry.insert(0, default_entry_values[idx])  
+            entries.append(entry)
+            
+            unit_label = tk.Label(frame, text=unit)
+            unit_label.grid(row=1, column=2, sticky="w")
+            labels.append(unit_label)
+            
+            # Bind the "Enter" key to the save_value function for this entry box
+            entry.bind('<Return>', lambda event, i=idx: save_value(event, i))
+        
+        is_opened = True 
     else:
-        # Make the window narrower
-        window.geometry("450x400")
+        window.geometry("450x500")
         btn["text"] = '>'
         
-        for label in labels:
-            label.place_forget()
-        for txt in entries:
-            txt.place_forget()
+        for widget in window.grid_slaves():
+            if int(widget.grid_info()["column"]) >= 2:  # Remove widgets in columns 2 and beyond
+                widget.grid_forget()
         
-        is_opened = False
+        is_opened = False  
