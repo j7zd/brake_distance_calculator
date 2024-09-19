@@ -25,14 +25,14 @@ def create_tabs(root, style):
 
     tabControl.pack(expand=1, fill="both")
 
-    Tab1EntryFrame = ttk.Frame(tab1);
+    Tab1EntryFrame = ttk.Frame(tab1)
     Tab1EntryFrame.grid(rows=1, columns=4)
     labelEntrySTab1 = ttk.Label(Tab1EntryFrame, text="Distance").grid(row=0, column=0)
     entrySTab1 = ttk.Entry(Tab1EntryFrame).grid(row=0, column=1)
     labelEntryTTab1 = ttk.Label(Tab1EntryFrame, text="Time").grid(row=0, column=2)
     entryTTab1 = ttk.Entry(Tab1EntryFrame).grid(row=0, column=3)
 
-    Tab2EntryFrame = ttk.Frame(tab2);
+    Tab2EntryFrame = ttk.Frame(tab2)
     Tab2EntryFrame.grid(rows=1, columns=4)
     labelEntrySTab2 = ttk.Label(Tab2EntryFrame, text="Length 1").grid(row=0, column=0)
     entrySTab2 = ttk.Entry(Tab2EntryFrame).grid(row=0, column=1)
