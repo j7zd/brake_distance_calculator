@@ -49,7 +49,7 @@ def buttonClicked(window, btn):
         for label in labels:
             label.place(x=450, y=50 + labels.index(label) * 40)
         for txt in entries:
-            txt.place(x=450, y=50 + entries.index(txt) * 40)
+            txt.place(x=470, y=50 + entries.index(txt) * 40)
             
             is_opened = True
     else:
