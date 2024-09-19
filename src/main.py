@@ -7,7 +7,7 @@ from constants_menu import *
 if __name__ == "__main__":
     window = tk.Tk()
 
-    window.title("Break distance calculator")
+    window.title("Brake distance calculator")
 
     tabs_frame = tk.Frame()
     tabs_frame.grid(row=0, column=0, sticky="nsew")
