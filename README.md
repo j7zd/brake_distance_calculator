@@ -1,6 +1,6 @@
 # Brake distance calculator
 
-This is a simple calculator to calculate the braking distance of a moving vehicle. It accounts for the reaction time of the driver, the time it takes for the brakes to be applied the traction of the tires and the speed of the vehicle. It can also calculate the speed of the vehicle given the braking distance.
+Simple app for calculating the braking distance of a moving vehicle. It accounts for the reaction time of the driver, the time it takes for the brakes to be applied the traction of the tires and the speed of the vehicle. It can also calculate the speed of the vehicle given the braking distance.
 
 ![UI showcase 1](UI_showcase_1.png)
 
@@ -23,6 +23,10 @@ The app is written in Python and uses the Tkinter library for the GUI.
 
 To compile the app you need to have Python installed. You can download it from the official website [here](https://www.python.org/downloads/).
 
-Compile using pyinstaller using:
+Install pyinstaller with:
+
+```python -m pip install pyinstaller```
+
+Using pyinstaller compile to exe with:
 
 ```pyinstaller.exe main.py --onefile --noconsole```
