@@ -8,26 +8,29 @@ break_distance_var = None
 ROUNDING = 4
 
 def update_velocity(get_values):
-    a, b, input_type = get_values()
-    t1 = float(entry_values[0])
-    t2 = float(entry_values[1])
-    t3 = float(entry_values[2])
-    j = entry_values[3]
-    if j == "":
-        k = float(entry_values[4])
-        m = float(entry_values[5])
-    else:
-        j = float(j)
-        k = 1.1
-        m = j / 9.81 / 1.1
-    if input_type == 0:
-        velocity = average_speed(float(a), float(b))
-        velocity_var.set(str(round(ms_to_kmh(velocity), ROUNDING)))
-    elif input_type == 1:
-        velocity = brake_trails_speed(float(a), float(b), t3, k, m)
-        velocity_var.set(str(round(ms_to_kmh(velocity), ROUNDING)))
-    else:
-        velocity_var.set("")
+    try:
+        a, b, input_type = get_values()
+        t1 = float(entry_values[0])
+        t2 = float(entry_values[1])
+        t3 = float(entry_values[2])
+        j = entry_values[3]
+        if j == "":
+            k = float(entry_values[4])
+            m = float(entry_values[5])
+        else:
+            j = float(j)
+            k = 1.1
+            m = j / 9.81 / 1.1
+        if input_type == 0:
+            velocity = average_speed(float(a), float(b))
+            velocity_var.set(str(round(ms_to_kmh(velocity), ROUNDING)))
+        elif input_type == 1:
+            velocity = brake_trails_speed(float(a), float(b), t3, k, m)
+            velocity_var.set(str(round(ms_to_kmh(velocity), ROUNDING)))
+        else:
+            velocity_var.set("")
+    except:
+        pass
     update_brake_distance()
 
 def update_brake_distance():
