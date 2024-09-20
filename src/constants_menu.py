@@ -1,7 +1,6 @@
 import tkinter as tk
 from tkinter.ttk import *
 
-
 is_opened = False  
 entries = []      
 labels = []        
@@ -21,6 +20,10 @@ def buttonClicked(window, btn):
         window.geometry("700x500")
         btn["text"] = '<'
         
+        # Create a parent frame to hold all the smaller frames
+        parent_frame = tk.Frame(window, borderwidth=2, relief="ridge")
+        parent_frame.grid(row=0, column=2, sticky="nsew", padx=10, pady=10)
+
         variables = [
             ["t1", "Driver's reaction time:", "s"],
             ["t2", "Brake activation delay:", "s"],
@@ -31,8 +34,8 @@ def buttonClicked(window, btn):
         ]
 
         for idx, (var_name, description, unit) in enumerate(variables):
-            frame = tk.Frame(window, borderwidth=1, relief="ridge") 
-            frame.grid(row=idx, column=2, sticky="w", padx=5, pady=2)
+            frame = tk.Frame(parent_frame) 
+            frame.grid(row=idx, column=0, sticky="w", padx=5, pady=2)
             
             desc_label = tk.Label(frame, text=description, width=30, anchor="w")
             desc_label.grid(row=0, column=0, columnspan=5, padx=2)
