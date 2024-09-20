@@ -13,12 +13,14 @@ def average_speed(distance, time):
 
 def brake_trails_speed(Sc , Sr, t3 , k , u):
     j = calc_j(k, u)
+    print(j)
     Ss = 0.5 * (Sc + Sr)
     Vbt = 0.5 * t3 * j + (2*j*Ss) ** 0.5 
     return Vbt
 
 def brake_distance (V , t1 , t2 , t3 , k , u):
     j = calc_j(k, u)
+    print(j)
     Sbd = V * (t1 + t2 + 0.5*t3) + (V**2)/(2*j)
     return Sbd
 

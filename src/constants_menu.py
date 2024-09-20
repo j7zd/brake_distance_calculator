@@ -6,7 +6,7 @@ is_opened = False
 entries = []      
 labels = []        
 entry_values = []  
-default_entry_values = [ "1.2", "0.2", "0.4", "1.1", "0.9", "9.81"]
+default_entry_values = [ "1.2", "0.2", "0.4", "1", "0.9", "9.81"]
 entry_values = default_entry_values.copy()
 
 def save_value(event, idx, on_change):
@@ -22,7 +22,6 @@ def buttonClicked(window, btn, on_change):
         window.geometry("700x320")
         btn["text"] = '<'
         
-        # Create a parent frame to hold all the smaller frames
         parent_frame = tk.Frame(window, borderwidth=2, relief="ridge")
         parent_frame.grid(row=0, column=2, sticky="nsew", padx=10, pady=10)
 
