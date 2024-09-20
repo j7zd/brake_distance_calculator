@@ -17,13 +17,24 @@ def update_velocity(get_values):
     if input_type == 0:
         velocity = average_speed(float(a), float(b))
         velocity_var.set(str(round(ms_to_kmh(velocity), ROUNDING)))
-        brake_distance_var.set(str(round(brake_distance(velocity, t1, t2, t3, k, m), ROUNDING)) + " m")
     elif input_type == 1:
         velocity = brake_trails_speed(float(a), float(b), t3, k, m)
         velocity_var.set(str(round(ms_to_kmh(velocity), ROUNDING)))
-        brake_distance_var.set(str(round(brake_distance(velocity, t1, t2, t3, k, m), ROUNDING)) + " m")
     else:
         velocity_var.set("")
+    update_brake_distance()
+
+def update_brake_distance():
+    try:
+        t1 = float(entry_values[0])
+        t2 = float(entry_values[1])
+        t3 = float(entry_values[2])
+        k = float(entry_values[3])
+        m = float(entry_values[4])
+        velocity = kmh_to_ms(float(speed_entry.get()))
+        brake_distance_var.set(str(round(brake_distance(velocity, t1, t2, t3, k, m), ROUNDING)) + " m")
+    except:
+        brake_distance_var.set("")
     update_collision_distance()
 
 def update_collision_distance():
@@ -81,8 +92,9 @@ if __name__ == "__main__":
     speed_label.grid(row=0, column=0)
     velocity_var = tk.StringVar()
     velocity_var.set("")
-    speed_entry = tk.Entry(the_rest, textvariable=velocity_var, state="readonly")
+    speed_entry = tk.Entry(the_rest, textvariable=velocity_var)
     speed_entry.grid(row=1, column=0)
+    speed_entry.bind('<Return>', lambda event: update_brake_distance())
 
     brake_distance_label = tk.Label(the_rest, text="Brake distance (m): ")
     brake_distance_label.grid(row=0, column=1)
