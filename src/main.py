@@ -5,19 +5,21 @@ from constants_menu import *
 from calculations import average_speed, brake_trails_speed, brake_distance, ms_to_kmh, check_collision, Vmax, kmh_to_ms
 
 break_distance_var = None
+ROUNDING = 4
 
 def update_velocity():
     a, b, input_type = get_values()
     if input_type == 0:
         velocity = average_speed(float(a), float(b))
-        velocity_var.set(str(round(ms_to_kmh(velocity), 2)))
-        brake_distance_var.set(str(round(brake_distance(velocity, 1.2, 0.2, 0.4, 1.1, 0.9), 2)) + " m") # TODO
+        velocity_var.set(str(round(ms_to_kmh(velocity), ROUNDING)))
+        brake_distance_var.set(str(round(brake_distance(velocity, 1.2, 0.2, 0.4, 1.1, 0.9), ROUNDING)) + " m") # TODO
     elif input_type == 1:
         velocity = brake_trails_speed(float(a), float(b), 0.4, 1.1, 0.9) # TODO
-        velocity_var.set(str(round(ms_to_kmh(velocity), 2)))
-        brake_distance_var.set(str(round(brake_distance(velocity, 1.2, 0.2, 0.4, 1.1, 0.9), 2)) + " m") # TODO
+        velocity_var.set(str(round(ms_to_kmh(velocity), ROUNDING)))
+        brake_distance_var.set(str(round(brake_distance(velocity, 1.2, 0.2, 0.4, 1.1, 0.9), ROUNDING)) + " m") # TODO
     else:
         velocity_var.set("")
+    update_collision_distance()
 
 def update_collision_distance():
     try:
@@ -30,6 +32,7 @@ def update_collision_distance():
             does_collision_var.set("No")
     except:
         does_collision_var.set("")
+    update_speed_limit()
 
 def update_speed_limit():
     try:
@@ -40,7 +43,7 @@ def update_speed_limit():
             if n_speed > speed_limit:
                 new_speed_limit_var.set(str(ms_to_kmh(speed_limit)))
             else:
-                new_speed_limit_var.set(str(ms_to_kmh(n_speed)))
+                new_speed_limit_var.set(str(round(ms_to_kmh(n_speed), ROUNDING)))
         else:
             new_speed_limit_var.set("Error")
     except:

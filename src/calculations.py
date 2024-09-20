@@ -1,8 +1,8 @@
 def ms_to_kmh(speed_ms):
-    return round(speed_ms * 3.6, 2)
+    return speed_ms * 3.6
 
 def kmh_to_ms(speed_kmh):
-    return round(speed_kmh / 3.6, 2)
+    return speed_kmh / 3.6
 
 def calc_j ( k , u ):
     return k*u*9.81
