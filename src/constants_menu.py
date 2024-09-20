@@ -23,6 +23,8 @@ def save_value(event, idx, on_change):
         else:
             entries[4].config(state="normal")
             entries[5].config(state="normal")
+            entries[4].insert(0, entry_values[4])
+            entries[5].insert(0, entry_values[5])
     
     on_change()
 
