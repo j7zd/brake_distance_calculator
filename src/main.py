@@ -12,8 +12,14 @@ def update_velocity(get_values):
     t1 = float(entry_values[0])
     t2 = float(entry_values[1])
     t3 = float(entry_values[2])
-    k = float(entry_values[3])
-    m = float(entry_values[4])
+    j = entry_values[3]
+    if j == "":
+        k = float(entry_values[4])
+        m = float(entry_values[5])
+    else:
+        j = float(j)
+        k = 1.1
+        m = j / 9.81 / 1.1
     if input_type == 0:
         velocity = average_speed(float(a), float(b))
         velocity_var.set(str(round(ms_to_kmh(velocity), ROUNDING)))
@@ -29,8 +35,14 @@ def update_brake_distance():
         t1 = float(entry_values[0])
         t2 = float(entry_values[1])
         t3 = float(entry_values[2])
-        k = float(entry_values[3])
-        m = float(entry_values[4])
+        j = entry_values[3]
+        if j == "":
+            k = float(entry_values[4])
+            m = float(entry_values[5])
+        else:
+            j = float(j)
+            k = 1.1
+            m = j / 9.81 / 1.1
         velocity = kmh_to_ms(float(speed_entry.get()))
         brake_distance_var.set(str(round(brake_distance(velocity, t1, t2, t3, k, m), ROUNDING)) + " m")
     except:
@@ -55,8 +67,14 @@ def update_speed_limit():
         t1 = float(entry_values[0])
         t2 = float(entry_values[1])
         t3 = float(entry_values[2])
-        k = float(entry_values[3])
-        m = float(entry_values[4])
+        j = entry_values[3]
+        if j == "":
+            k = float(entry_values[4])
+            m = float(entry_values[5])
+        else:
+            j = float(j)
+            k = 1.1
+            m = j / 9.81 / 1.1
         speed_limit = kmh_to_ms(float(speed_limit_entry.get()))
         collision_distance = float(collision_distance_entry.get())
         n_speed = kmh_to_ms(Vmax(collision_distance, t1, t2, t3, k, m))
