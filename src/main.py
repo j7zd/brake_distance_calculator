@@ -7,16 +7,21 @@ from calculations import average_speed, brake_trails_speed, brake_distance, ms_t
 break_distance_var = None
 ROUNDING = 4
 
-def update_velocity():
+def update_velocity(get_values):
     a, b, input_type = get_values()
+    t1 = float(entry_values[0])
+    t2 = float(entry_values[1])
+    t3 = float(entry_values[2])
+    k = float(entry_values[3])
+    m = float(entry_values[4])
     if input_type == 0:
         velocity = average_speed(float(a), float(b))
         velocity_var.set(str(round(ms_to_kmh(velocity), ROUNDING)))
-        brake_distance_var.set(str(round(brake_distance(velocity, 1.2, 0.2, 0.4, 1.1, 0.9), ROUNDING)) + " m") # TODO
+        brake_distance_var.set(str(round(brake_distance(velocity, t1, t2, t3, k, m), ROUNDING)) + " m")
     elif input_type == 1:
-        velocity = brake_trails_speed(float(a), float(b), 0.4, 1.1, 0.9) # TODO
+        velocity = brake_trails_speed(float(a), float(b), t3, k, m)
         velocity_var.set(str(round(ms_to_kmh(velocity), ROUNDING)))
-        brake_distance_var.set(str(round(brake_distance(velocity, 1.2, 0.2, 0.4, 1.1, 0.9), ROUNDING)) + " m") # TODO
+        brake_distance_var.set(str(round(brake_distance(velocity, t1, t2, t3, k, u), ROUNDING)) + " m")
     else:
         velocity_var.set("")
     update_collision_distance()
@@ -36,9 +41,14 @@ def update_collision_distance():
 
 def update_speed_limit():
     try:
+        t1 = float(entry_values[0])
+        t2 = float(entry_values[1])
+        t3 = float(entry_values[2])
+        k = float(entry_values[3])
+        m = float(entry_values[4])
         speed_limit = kmh_to_ms(float(speed_limit_entry.get()))
         collision_distance = float(collision_distance_entry.get())
-        n_speed = kmh_to_ms(Vmax(collision_distance, 1.2, 0.2, 0.4, 1.1, 0.9)) # TODO
+        n_speed = kmh_to_ms(Vmax(collision_distance, t1, t2, t3, k, m))
         if n_speed is not None:
             if n_speed > speed_limit:
                 new_speed_limit_var.set(str(ms_to_kmh(speed_limit)))
@@ -49,6 +59,8 @@ def update_speed_limit():
     except:
         new_speed_limit_var.set("")
 
+get_values_1 = None
+
 if __name__ == "__main__":
     window = tk.Tk()
 
@@ -57,9 +69,9 @@ if __name__ == "__main__":
     tabs_frame = tk.Frame()
     tabs_frame.grid(row=0, column=0, sticky="nsew")
     style = ttk.Style()
-    get_values = create_tabs(tabs_frame, style, update_velocity)
+    get_values_1 = create_tabs(tabs_frame, style, lambda: update_velocity(get_values_1))
     clicked = tk.StringVar()
-    btn = tk.Button(window, text='>', command=lambda: buttonClicked(window, btn), width=3)
+    btn = tk.Button(window, text='>', command=lambda: buttonClicked(window, btn, lambda: update_velocity(get_values_1)), width=3)
     btn.grid(row=0, column=1, sticky="nsew") 
 
     the_rest = tk.Frame()

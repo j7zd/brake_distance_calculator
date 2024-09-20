@@ -1,20 +1,22 @@
 import tkinter as tk
 from tkinter.ttk import *
+from main import update_velocity
 
 
 is_opened = False  
 entries = []      
 labels = []        
 entry_values = []  
-default_entry_values = [ "1.2", "0.2", "0.4", "1", "0.9", "9.81"]
+default_entry_values = [ "1.2", "0.2", "0.4", "1.1", "0.9", "9.81"]
 entry_values = default_entry_values.copy()
 
-def save_value(event, idx):
+def save_value(event, idx, on_change):
     value = entries[idx].get()  
     entry_values[idx] = value   
     print(f"Value saved for {labels[idx * 3].cget('text')} {value}") 
+    on_change()
 
-def buttonClicked(window, btn):
+def buttonClicked(window, btn, on_change):
     global is_opened
     
     if not is_opened:
@@ -53,7 +55,7 @@ def buttonClicked(window, btn):
             labels.append(unit_label)
             
             # Bind the "Enter" key to the save_value function for this entry box
-            entry.bind('<Return>', lambda event, i=idx: save_value(event, i))
+            entry.bind('<Return>', lambda event, i=idx: save_value(event, i, on_change))
         
         is_opened = True 
     else:
