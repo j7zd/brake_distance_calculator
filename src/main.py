@@ -21,7 +21,7 @@ def update_velocity(get_values):
     elif input_type == 1:
         velocity = brake_trails_speed(float(a), float(b), t3, k, m)
         velocity_var.set(str(round(ms_to_kmh(velocity), ROUNDING)))
-        brake_distance_var.set(str(round(brake_distance(velocity, t1, t2, t3, k, u), ROUNDING)) + " m")
+        brake_distance_var.set(str(round(brake_distance(velocity, t1, t2, t3, k, m), ROUNDING)) + " m")
     else:
         velocity_var.set("")
     update_collision_distance()
