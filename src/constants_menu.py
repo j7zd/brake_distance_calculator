@@ -6,7 +6,7 @@ is_opened = False
 entries = []      
 labels = []        
 entry_values = []  
-default_entry_values = [ "1.2", "0.2", "0.4", "1", "0.9", "9.81", "50"]
+default_entry_values = [ "1.2", "0.2", "0.4", "1", "0.9", "9.81"]
 entry_values = default_entry_values.copy()
 
 def save_value(event, idx):
@@ -26,13 +26,12 @@ def buttonClicked(window, btn):
             ["t2", "Brake activation delay:", "s"],
             ["t3", "Brake delay rise time:", "s"],
             ["k", "Correction factor:", ""],
-            ["m", "Coefficient of traction on a dry road:", ""],
-            ["g", "Acceleration of gravity:", "m/s²"],
-            ["SL", "Speed limit:", "km/h"]
+            ["m", "Coefficient of traction:", ""],
+            ["g", "Acceleration of gravity:", "m/s²"]
         ]
 
         for idx, (var_name, description, unit) in enumerate(variables):
-            frame = tk.Frame(window)  # Create a frame for each row to combine widgets
+            frame = tk.Frame(window, borderwidth=1, relief="ridge") 
             frame.grid(row=idx, column=2, sticky="w", padx=5, pady=2)
             
             desc_label = tk.Label(frame, text=description, width=30, anchor="w")
