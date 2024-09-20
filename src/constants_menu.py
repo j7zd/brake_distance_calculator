@@ -6,20 +6,31 @@ is_opened = False
 entries = []      
 labels = []        
 entry_values = []  
-default_entry_values = [ "1.2", "0.2", "0.4", "1", "0.9", "9.81"]
+default_entry_values = [ "1.2", "0.2", "0.4","" , "1", "0.9", "9.81"]
 entry_values = default_entry_values.copy()
 
 def save_value(event, idx, on_change):
     value = entries[idx].get()  
     entry_values[idx] = value   
     print(f"Value saved for {labels[idx * 3].cget('text')} {value}") 
+    
+    if idx == 3: 
+        if value: 
+            entries[4].delete(0, tk.END)
+            entries[5].delete(0, tk.END)
+            entries[4].config(state="readonly")
+            entries[5].config(state="readonly")
+        else:
+            entries[4].config(state="normal")
+            entries[5].config(state="normal")
+    
     on_change()
 
 def buttonClicked(window, btn, on_change):
     global is_opened
     
     if not is_opened:
-        window.geometry("700x320")
+        window.geometry("700x350")
         btn["text"] = '<'
         
         parent_frame = tk.Frame(window, borderwidth=2, relief="ridge")
@@ -29,6 +40,7 @@ def buttonClicked(window, btn, on_change):
             ["t1", "Driver's reaction time:", "s"],
             ["t2", "Brake activation delay:", "s"],
             ["t3", "Brake delay rise time:", "s"],
+            ["j", "Max brake delay time:", "m/s²"],
             ["k", "Correction factor:", ""],
             ["m", "Coefficient of traction:", ""],
             ["g", "Acceleration of gravity:", "m/s²"]
@@ -52,20 +64,22 @@ def buttonClicked(window, btn, on_change):
             entry.insert(0, entry_values[idx])  
             entries.append(entry)
             
+            if (var_name == "g"):
+                entry.config(state="readonly")
+            
             unit_label = tk.Label(frame, text=unit, width=5)
             unit_label.grid(row=1, column=2, sticky="w")
             labels.append(unit_label)
             
-            # Bind the "Enter" key to the save_value function for this entry box
             entry.bind('<Return>', lambda event, i=idx: save_value(event, i, on_change))
         
         is_opened = True 
     else:
-        window.geometry("500x320")
+        window.geometry("500x350")
         btn["text"] = '>'
         
         for widget in window.grid_slaves():
-            if int(widget.grid_info()["column"]) >= 2:  # Remove widgets in columns 2 and beyond
+            if int(widget.grid_info()["column"]) >= 2:  
                 widget.grid_forget()
         
         is_opened = False  
