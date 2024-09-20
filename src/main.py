@@ -72,10 +72,10 @@ if __name__ == "__main__":
     get_values_1 = create_tabs(tabs_frame, style, lambda: update_velocity(get_values_1))
     clicked = tk.StringVar()
     btn = tk.Button(window, text='>', command=lambda: buttonClicked(window, btn, lambda: update_velocity(get_values_1)), width=3)
-    btn.grid(row=0, column=1, sticky="nsew") 
+    btn.grid(row=0, column=1, rowspan=2, sticky="nsew") 
 
     the_rest = tk.Frame()
-    the_rest.grid(row=1, column=0, sticky="nsew", padx=10, pady=10)
+    the_rest.grid(row=0, column=0, sticky="nsew", padx=10, pady=100)
 
     speed_label = tk.Label(the_rest, text="Velocity (km/h): ")
     speed_label.grid(row=0, column=0)

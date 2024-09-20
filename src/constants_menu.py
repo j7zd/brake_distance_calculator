@@ -19,7 +19,7 @@ def buttonClicked(window, btn, on_change):
     global is_opened
     
     if not is_opened:
-        window.geometry("700x500")
+        window.geometry("700x320")
         btn["text"] = '<'
         
         # Create a parent frame to hold all the smaller frames
@@ -62,7 +62,7 @@ def buttonClicked(window, btn, on_change):
         
         is_opened = True 
     else:
-        window.geometry("500x500")
+        window.geometry("500x320")
         btn["text"] = '>'
         
         for widget in window.grid_slaves():
